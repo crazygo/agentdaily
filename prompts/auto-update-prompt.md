@@ -70,11 +70,11 @@ After execution:
 - If merge fails: Stop and report error
 - If yarn update fails: Stop and report error
 - If no changes: Skip commit step (not an error)
-- If ANTHROPIC_API_KEY is missing: yarn update will fail
+- If ANTHROPIC_AUTH_TOKEN is missing: yarn update will fail
 
 ## Notes
 
 - This is designed to run unattended
 - All conflicts are auto-resolved
-- Requires ANTHROPIC_API_KEY environment variable
+- Requires ANTHROPIC_AUTH_TOKEN environment variable
 - Safe to run multiple times (idempotent)

@@ -36,17 +36,17 @@ export class ClaudeAgent {
       // Use the query() method from Agent SDK
       // External MCP servers configured below
       // Explicitly pass environment variables to ensure they're available in CI
-      const apiKey = process.env.ANTHROPIC_API_KEY;
+      const authToken = process.env.ANTHROPIC_AUTH_TOKEN;
       const baseUrl = process.env.ANTHROPIC_BASE_URL;
 
       // Debug: Log environment variable status (without exposing the key)
       console.log('🔍 Environment check:');
-      console.log(`   ANTHROPIC_API_KEY: ${apiKey ? `✅ Set (length: ${apiKey.length})` : '❌ Not set'}`);
+      console.log(`   ANTHROPIC_AUTH_TOKEN: ${authToken ? `✅ Set (length: ${authToken.length})` : '❌ Not set'}`);
       console.log(`   ANTHROPIC_BASE_URL: ${baseUrl ? `✅ Set (${baseUrl})` : 'ℹ️  Not set (optional)'}`);
       console.log('');
 
-      if (!apiKey) {
-        throw new Error('ANTHROPIC_API_KEY environment variable is required');
+      if (!authToken) {
+        throw new Error('ANTHROPIC_AUTH_TOKEN environment variable is required');
       }
 
       for await (const message of query({
@@ -58,7 +58,8 @@ export class ClaudeAgent {
           // Explicitly pass environment variables to SDK
           env: {
             ...process.env,
-            ANTHROPIC_API_KEY: apiKey,
+            ANTHROPIC_API_KEY: '', // Fixed to empty string
+            ANTHROPIC_AUTH_TOKEN: authToken,
             ...(baseUrl && { ANTHROPIC_BASE_URL: baseUrl }),
           },
           mcpServers: {
@@ -66,7 +67,7 @@ export class ClaudeAgent {
               type: 'http',
               url: 'https://open.bigmodel.cn/api/mcp/web_search_prime/mcp',
               headers: {
-                'Authorization': `Bearer ${apiKey}`,
+                'Authorization': `Bearer ${authToken}`,
               },
             },
           },

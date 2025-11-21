@@ -15,7 +15,8 @@ jobs:
     # 如果没有使用 Environment，可以删除这一行，直接使用 repository secrets
     environment: production
     env:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_API_KEY: ''
+      ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
       ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
 
     steps:
@@ -46,16 +47,18 @@ jobs:
 
       - name: Verify environment variables
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ''
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
         run: |
           echo "Checking environment variables..."
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "❌ ANTHROPIC_API_KEY is not set"
+          if [ -z "$ANTHROPIC_AUTH_TOKEN" ]; then
+            echo "❌ ANTHROPIC_AUTH_TOKEN is not set"
             exit 1
           else
-            echo "✅ ANTHROPIC_API_KEY is set (length: ${#ANTHROPIC_API_KEY})"
+            echo "✅ ANTHROPIC_AUTH_TOKEN is set (length: ${#ANTHROPIC_AUTH_TOKEN})"
           fi
+          echo "ℹ️  ANTHROPIC_API_KEY is set to empty string (as required)"
           if [ -n "$ANTHROPIC_BASE_URL" ]; then
             echo "✅ ANTHROPIC_BASE_URL is set: $ANTHROPIC_BASE_URL"
           else
@@ -64,7 +67,8 @@ jobs:
 
       - name: Execute auto-update
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ''
+          ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
         run: |
           # Run the auto-update workflow using our project

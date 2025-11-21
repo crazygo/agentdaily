@@ -124,8 +124,8 @@ Build an automated research system that executes this unified prompt in one agen
 - **Server Name**: `web-search-prime`
 - **Type**: `'http'` (not SSE)
 - **URL**: `https://open.bigmodel.cn/api/mcp/web_search_prime/mcp`
-- **Authentication**: Read from `process.env.ANTHROPIC_API_KEY`
-- **Headers**: Include `Authorization: Bearer ${API_KEY}`
+- **Authentication**: Read from `process.env.ANTHROPIC_AUTH_TOKEN`
+- **Headers**: Include `Authorization: Bearer ${AUTH_TOKEN}`
 
 **Agent Configuration**:
 - **Max Turns**: 30
@@ -135,7 +135,8 @@ Build an automated research system that executes this unified prompt in one agen
 - **User Prompt**: This entire unified research prompt
 
 **Environment Variables to Read**:
-- `ANTHROPIC_API_KEY` - Required for API authentication
+- `ANTHROPIC_AUTH_TOKEN` - Required for API authentication
+- `ANTHROPIC_API_KEY` - Fixed to empty string
 - `ANTHROPIC_MODEL` - Optional, defaults to `claude-3-5-sonnet-20241022`
 
 **Data Sources**:
