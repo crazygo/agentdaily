@@ -15,10 +15,10 @@ if git rev-parse --verify ph-pages >/dev/null 2>&1; then
   # Pull latest changes from remote ph-pages branch if it exists
   if git ls-remote --exit-code --heads origin ph-pages >/dev/null 2>&1; then
     echo "🔄 Pulling latest changes from origin/ph-pages..."
-    if git pull --rebase origin ph-pages; then
+    if git pull --no-rebase origin ph-pages; then
       echo "✅ Successfully pulled latest changes"
     else
-      echo "❌ Failed to rebase changes from remote. This may be due to:"
+      echo "❌ Failed to merge changes from remote. This may be due to:"
       echo "   - Merge conflicts that need manual resolution"
       echo "   - Diverged history between local and remote branches"
       echo "   Please resolve conflicts manually and re-run the workflow"
@@ -65,8 +65,27 @@ if ! git diff-index --quiet HEAD --; then
   
   echo ""
   echo "📤 Pushing to ph-pages branch..."
-  git push origin ph-pages
-  echo "✅ Changes pushed successfully"
+  
+  # Retry loop for push
+  MAX_RETRIES=5
+  RETRY_COUNT=0
+  
+  while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+    if git push origin ph-pages; then
+      echo "✅ Changes pushed successfully"
+      break
+    else
+      RETRY_COUNT=$((RETRY_COUNT + 1))
+      if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+        echo "⚠️  Push failed (attempt $RETRY_COUNT/$MAX_RETRIES), pulling latest changes and retrying..."
+        git pull --no-rebase origin ph-pages
+        sleep 2
+      else
+        echo "❌ Failed to push after $MAX_RETRIES attempts"
+        exit 1
+      fi
+    fi
+  done
 else
   echo "ℹ️  No changes to commit"
 fi
