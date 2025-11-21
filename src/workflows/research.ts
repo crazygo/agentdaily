@@ -1,119 +1,95 @@
+import { ClaudeAgent } from '../agent/ClaudeAgent';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ClaudeAgent } from '../agent/ClaudeAgent';
-import { getSystemPrompt } from '../agent/prompts';
-import { ResearchResult, TasksConfig } from '../types';
+import { tasksConfig } from '../config/tasks';
 
-/**
- * Load tasks configuration
- */
-function loadTasksConfig(): TasksConfig {
-  const configPath = path.resolve(process.cwd(), 'config/tasks.json');
-  const configData = fs.readFileSync(configPath, 'utf-8');
-  return JSON.parse(configData);
+interface ResearchResult {
+  newProducts?: any[];
+  whitelistUpdates?: any[];
+  insights?: any[];
 }
 
 /**
- * Load prompt from file and replace placeholders
+ * Parse agent response
  */
-function loadPrompt(promptFile: string): string {
-  const promptPath = path.resolve(process.cwd(), promptFile);
-  let prompt = fs.readFileSync(promptPath, 'utf-8');
-
-  // Replace current date placeholder
-  const date = new Date().toISOString().split('T')[0];
-  prompt = prompt.replace(/{INSERT_CURRENT_DATE}/g, date);
-
-  return prompt;
-}
-
-/**
- * Parse JSON from agent response, handling markdown code blocks and empty responses
- */
-function parseAgentResponse<T>(response: string, taskName: string = 'task'): T {
-  // Handle empty or very short responses
-  if (!response || response.trim().length < 10) {
-    console.log(`   ⚠️  Empty or very short response for ${taskName}, returning empty array`);
-    return [] as T;
-  }
-
+function parseAgentResponse<T>(response: string, taskName: string): T {
   try {
-    // Try direct parse first
-    return JSON.parse(response);
-  } catch {
-    // Try to extract JSON from markdown code block
-    const jsonMatch = response.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
+    // Try to parse as JSON first
+    const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
-      try {
-        return JSON.parse(jsonMatch[1]);
-      } catch {
-        console.log(`   ⚠️  Found code block but JSON parsing failed for ${taskName}`);
-      }
+      return JSON.parse(jsonMatch[1]);
     }
 
-    // Try to find JSON array in the text
-    const arrayMatch = response.match(/\[[\s\S]*\]/);
-    if (arrayMatch) {
-      try {
-        return JSON.parse(arrayMatch[0]);
-      } catch {
-        console.log(`   ⚠️  Found array-like structure but JSON parsing failed for ${taskName}`);
-      }
-    }
-
-    // Try to find JSON object in the text
-    const objectMatch = response.match(/\{[\s\S]*\}/);
-    if (objectMatch) {
-      try {
-        return JSON.parse(objectMatch[0]);
-      } catch {
-        console.log(`   ⚠️  Found object-like structure but JSON parsing failed for ${taskName}`);
-      }
-    }
-
-    // If all parsing attempts fail, return empty array
-    console.log(`   ℹ️  Could not parse JSON from ${taskName} response, returning empty array`);
-    console.log(`   ℹ️  Response appears to be plain text (length: ${response.length} chars)`);
+    // If no JSON block, try to parse the whole response
+    return JSON.parse(response);
+  } catch (error) {
+    console.warn(`Warning: Could not parse ${taskName} response as JSON:`, error);
     return [] as T;
   }
 }
 
 /**
- * Run comprehensive research workflow
+ * Get task name from file path
+ */
+function getTaskName(promptFile: string): string {
+  const fileName = path.basename(promptFile, '.md');
+  return fileName.replace(/-prompt$/, '');
+}
+
+/**
+ * Main research workflow
+ * Executes all configured tasks using Claude Agent SDK
  */
 export async function runResearchWorkflow(): Promise<ResearchResult> {
-  console.log('\n🔬 Starting research workflow...\n');
+  console.log('🔬 Starting research workflow...\n');
 
-  const tasksConfig = loadTasksConfig();
   const agent = new ClaudeAgent();
-  const systemPrompt = getSystemPrompt();
+  const results: ResearchResult = {};
 
-  const results: any[] = [];
-
-  // Execute each task
-  for (let i = 0; i < tasksConfig.tasks.length; i++) {
-    const promptFile = tasksConfig.tasks[i];
-    const taskName = `Task ${i + 1}`;
-
-    console.log(`📋 ${taskName}: ${promptFile}`);
+  // Process each task
+  for (const promptFile of tasksConfig.tasks) {
+    const taskName = getTaskName(promptFile);
+    console.log(`📋 Processing task: ${taskName}`);
 
     try {
-      const prompt = loadPrompt(promptFile);
-      const response = await agent.run(systemPrompt, prompt);
-      const data = parseAgentResponse<any[]>(response, taskName);
+      // Load prompt content
+      const promptPath = path.resolve(process.cwd(), promptFile);
+      if (!fs.existsSync(promptPath)) {
+        console.warn(`⚠️  Prompt file not found: ${promptPath}`);
+        continue;
+      }
 
-      results.push(data);
-      console.log(`   ✅ Found ${data.length} items\n`);
-    } catch (error) {
-      console.error(`   ❌ Error executing ${taskName}:`, error);
-      results.push([]);
+      const prompt = fs.readFileSync(promptPath, 'utf-8');
+      const systemPrompt = `You are an expert researcher specializing in agentic coding and AI development tools. ${taskName === 'html-report' ? 'Generate HTML webpage based on the provided instructions.' : 'Provide detailed, accurate information about the requested topic.'}`;
+
+      console.log(`   🤖 Executing ${taskName}...`);
+
+      // HTML 任务特殊处理
+      if (promptFile.includes('html-report')) {
+        const htmlResponse = await agent.run(systemPrompt, prompt);
+        console.log(`   📄 ${htmlResponse}\n`);
+        results.newProducts = []; // HTML 任务返回空数组占位
+      } else {
+        const response = await agent.run(systemPrompt, prompt);
+        const data = parseAgentResponse<any[]>(response, taskName);
+
+        // Store results based on task type
+        if (taskName === 'new-products') {
+          results.newProducts = data;
+        } else if (taskName === 'whitelist-updates') {
+          results.whitelistUpdates = data;
+        } else if (taskName === 'insights') {
+          results.insights = data;
+        }
+
+        console.log(`   ✅ Found ${data.length} items\n`);
+      }
+    } catch (error: any) {
+      console.error(`   ❌ Error processing ${taskName}:`, error.message);
+      throw error;
     }
   }
 
-  return {
-    newProducts: results[0] || [],
-    whitelistUpdates: results[1] || [],
-    insights: results[2] || [],
-    generatedAt: new Date().toISOString(),
-  };
+  console.log('✨ Research workflow completed!\n');
+  return results;
 }
