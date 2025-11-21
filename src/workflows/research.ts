@@ -2,12 +2,7 @@ import { ClaudeAgent } from '../agent/ClaudeAgent';
 import * as fs from 'fs';
 import * as path from 'path';
 import { tasksConfig } from '../config/tasks';
-
-interface ResearchResult {
-  newProducts?: any[];
-  whitelistUpdates?: any[];
-  insights?: any[];
-}
+import { ResearchResult } from '../types/index';
 
 /**
  * Parse agent response
@@ -44,7 +39,12 @@ export async function runResearchWorkflow(): Promise<ResearchResult> {
   console.log('🔬 Starting research workflow...\n');
 
   const agent = new ClaudeAgent();
-  const results: ResearchResult = {};
+  const results: ResearchResult = {
+    newProducts: [],
+    whitelistUpdates: [],
+    insights: [],
+    generatedAt: new Date().toISOString()
+  };
 
   // Process each task
   for (const promptFile of tasksConfig.tasks) {
@@ -68,7 +68,6 @@ export async function runResearchWorkflow(): Promise<ResearchResult> {
       if (promptFile.includes('html-report')) {
         const htmlResponse = await agent.run(systemPrompt, prompt);
         console.log(`   📄 ${htmlResponse}\n`);
-        results.newProducts = []; // HTML 任务返回空数组占位
       } else {
         const response = await agent.run(systemPrompt, prompt);
         const data = parseAgentResponse<any[]>(response, taskName);
