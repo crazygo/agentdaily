@@ -35,18 +35,32 @@ export class ClaudeAgent {
 
       // Use the query() method from Agent SDK
       // External MCP servers configured below
+      // Explicitly pass environment variables to ensure they're available in CI
+      const apiKey = process.env.ANTHROPIC_API_KEY;
+      const baseUrl = process.env.ANTHROPIC_BASE_URL;
+
+      if (!apiKey) {
+        throw new Error('ANTHROPIC_API_KEY environment variable is required');
+      }
+
       for await (const message of query({
         prompt: userPrompt,
         options: {
           systemPrompt,
           maxTurns: this.config.maxTurns,
           permissionMode: 'bypassPermissions', // Skip permission prompts
+          // Explicitly pass environment variables to SDK
+          env: {
+            ...process.env,
+            ANTHROPIC_API_KEY: apiKey,
+            ...(baseUrl && { ANTHROPIC_BASE_URL: baseUrl }),
+          },
           mcpServers: {
             'web-search-prime': {
               type: 'http',
               url: 'https://open.bigmodel.cn/api/mcp/web_search_prime/mcp',
               headers: {
-                'Authorization': `Bearer ${process.env.ANTHROPIC_API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
               },
             },
           },
