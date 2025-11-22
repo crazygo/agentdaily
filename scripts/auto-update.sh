@@ -3,7 +3,7 @@ set -e
 
 echo "🚀 Starting auto-update workflow..."
 
-# Step 1: Switch to ph-pages branch
+# Step 1: Switch to ph-pages branch and sync with remote
 echo ""
 echo "📌 Step 1: Switching to ph-pages branch..."
 git fetch origin
@@ -15,13 +15,15 @@ if git rev-parse --verify ph-pages >/dev/null 2>&1; then
   # Pull latest changes from remote ph-pages branch if it exists
   if git ls-remote --exit-code --heads origin ph-pages >/dev/null 2>&1; then
     echo "🔄 Pulling latest changes from origin/ph-pages..."
-    if git pull origin ph-pages; then
+    if git pull --rebase origin ph-pages; then
       echo "✅ Successfully pulled latest changes"
     else
-      echo "❌ Failed to merge changes from remote. This may be due to:"
-      echo "   - Merge conflicts that need manual resolution"
-      echo "   Please resolve merge conflicts manually and re-run the workflow"
-      exit 1
+      echo "❌ Failed to rebase. This may be due to:"
+      echo "   - Conflicting updates to the same date directory"
+      echo "   - Solution: abort rebase and reset to remote"
+      git rebase --abort 2>/dev/null || true
+      git reset --hard origin/ph-pages
+      echo "✅ Reset to remote state"
     fi
   else
     echo "ℹ️  Remote ph-pages branch not found, will create on push"
@@ -31,31 +33,52 @@ else
   echo "✅ Created new ph-pages branch"
 fi
 
-# Step 2: Merge main branch (auto-resolve conflicts)
+# Step 2: Backup updates directory (preserve historical data)
 echo ""
-echo "🔀 Step 2: Merging main branch..."
-if git merge -X theirs origin/main --no-edit; then
-  echo "✅ Successfully merged main branch"
+echo "💾 Step 2: Backing up updates directory..."
+BACKUP_DIR=$(mktemp -d)
+if [ -d "updates" ]; then
+  cp -r updates "$BACKUP_DIR/"
+  echo "✅ Backed up to $BACKUP_DIR/updates"
 else
-  echo "❌ Failed to merge main branch"
-  exit 1
+  mkdir -p "$BACKUP_DIR/updates"
+  echo "ℹ️  No existing updates directory, created empty backup"
 fi
 
-# Step 3: Run yarn update
+# Step 3: Merge main branch (get latest code)
 echo ""
-echo "📝 Step 3: Generating daily reports..."
-if yarn update; then
+echo "🔀 Step 3: Merging latest code from main branch..."
+if git merge origin/main --no-edit; then
+  echo "✅ Successfully merged main branch"
+else
+  echo "❌ Merge failed, trying to resolve..."
+  # If merge conflicts, prefer main's version for all files EXCEPT updates/
+  git checkout --theirs . 
+  echo "✅ Using main's version for all files"
+fi
+
+# Step 4: Restore updates directory (keep ph-pages data)
+echo ""
+echo "📂 Step 4: Restoring updates directory..."
+rm -rf updates 2>/dev/null || true
+cp -r "$BACKUP_DIR/updates" .
+rm -rf "$BACKUP_DIR"
+echo "✅ Updates directory restored"
+
+# Step 5: Run yarn update
+echo ""
+echo "📝 Step 5: Generating daily reports..."
+if yarn install && yarn update; then
   echo "✅ Successfully generated reports"
 else
   echo "❌ Failed to generate reports"
   exit 1
 fi
 
-# Step 4: Commit and push changes
+# Step 6: Commit and push changes
 echo ""
-echo "💾 Step 4: Committing changes..."
-# Only add updates directory, force to bypass .gitignore
-git add -f updates/
+echo "💾 Step 6: Committing changes..."
+git add -A
 
 if ! git diff-index --quiet HEAD --; then
   TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
@@ -64,8 +87,47 @@ if ! git diff-index --quiet HEAD --; then
   
   echo ""
   echo "📤 Pushing to ph-pages branch..."
-  git push --force-with-lease origin ph-pages
-  echo "✅ Changes pushed successfully"
+  
+  # Strategy: Try normal push, if fails due to concurrent updates, retry with pull
+  MAX_RETRIES=3
+  RETRY_COUNT=0
+  
+  while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+    if git push origin ph-pages; then
+      echo "✅ Changes pushed successfully"
+      break
+    else
+      RETRY_COUNT=$((RETRY_COUNT + 1))
+      if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+        echo "⚠️  Push failed (attempt $RETRY_COUNT/$MAX_RETRIES), retrying..."
+        echo "🔄 Pulling latest changes..."
+        
+        # Backup updates again before pull
+        BACKUP_DIR2=$(mktemp -d)
+        cp -r updates "$BACKUP_DIR2/"
+        
+        # Pull with merge (not rebase, to avoid conflicts)
+        if git pull --no-rebase origin ph-pages; then
+          # Restore our updates
+          rm -rf updates
+          cp -r "$BACKUP_DIR2/updates" .
+          git add -A
+          git commit --amend --no-edit
+          rm -rf "$BACKUP_DIR2"
+          echo "✅ Merged and restored updates, retrying push..."
+        else
+          echo "❌ Pull failed"
+          rm -rf "$BACKUP_DIR2"
+          exit 1
+        fi
+        
+        sleep 2  # Brief delay before retry
+      else
+        echo "❌ Failed to push after $MAX_RETRIES attempts"
+        exit 1
+      fi
+    fi
+  done
 else
   echo "ℹ️  No changes to commit"
 fi
