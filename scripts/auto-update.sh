@@ -3,34 +3,37 @@ set -e
 
 echo "🚀 Starting auto-update workflow..."
 
-# Step 1: Switch to ph-pages branch and sync with remote
+TARGET_BRANCH=${TARGET_BRANCH:-gh-pages}
+SOURCE_BRANCH=${SOURCE_BRANCH:-main}
+
+# Step 1: Switch to pages branch and sync with remote
 echo ""
-echo "📌 Step 1: Switching to ph-pages branch..."
+echo "📌 Step 1: Switching to ${TARGET_BRANCH} branch..."
 git fetch origin
 
-if git rev-parse --verify ph-pages >/dev/null 2>&1; then
-  git checkout ph-pages
-  echo "✅ Switched to existing ph-pages branch"
+if git rev-parse --verify "${TARGET_BRANCH}" >/dev/null 2>&1; then
+  git checkout "${TARGET_BRANCH}"
+  echo "✅ Switched to existing ${TARGET_BRANCH} branch"
   
-  # Pull latest changes from remote ph-pages branch if it exists
-  if git ls-remote --exit-code --heads origin ph-pages >/dev/null 2>&1; then
-    echo "🔄 Pulling latest changes from origin/ph-pages..."
-    if git pull --rebase origin ph-pages; then
+  # Pull latest changes from remote target branch if it exists
+  if git ls-remote --exit-code --heads origin "${TARGET_BRANCH}" >/dev/null 2>&1; then
+    echo "🔄 Pulling latest changes from origin/${TARGET_BRANCH}..."
+    if git pull --rebase origin "${TARGET_BRANCH}"; then
       echo "✅ Successfully pulled latest changes"
     else
       echo "❌ Failed to rebase. This may be due to:"
       echo "   - Conflicting updates to the same date directory"
       echo "   - Solution: abort rebase and reset to remote"
       git rebase --abort 2>/dev/null || true
-      git reset --hard origin/ph-pages
+      git reset --hard "origin/${TARGET_BRANCH}"
       echo "✅ Reset to remote state"
     fi
   else
-    echo "ℹ️  Remote ph-pages branch not found, will create on push"
+    echo "ℹ️  Remote ${TARGET_BRANCH} branch not found, will create on push"
   fi
 else
-  git checkout -b ph-pages
-  echo "✅ Created new ph-pages branch"
+  git checkout -b "${TARGET_BRANCH}"
+  echo "✅ Created new ${TARGET_BRANCH} branch"
 fi
 
 # Step 2: Backup updates directory (preserve historical data)
@@ -47,10 +50,10 @@ fi
 
 # Step 3: Merge main branch (get latest code)
 echo ""
-echo "🔀 Step 3: Merging latest code from main branch..."
+echo "🔀 Step 3: Merging latest code from ${SOURCE_BRANCH} branch..."
 # Configure custom merge driver to always keep existing updates/ content
 git config merge.ours.driver true || true
-if git merge origin/main --no-edit; then
+if git merge "origin/${SOURCE_BRANCH}" --no-edit; then
   echo "✅ Successfully merged main branch"
 else
   echo "❌ Merge failed, trying to resolve..."
@@ -59,7 +62,7 @@ else
   echo "✅ Using main's version for all files"
 fi
 
-# Step 4: Restore updates directory (keep ph-pages data)
+# Step 4: Restore updates directory (keep target branch data)
 echo ""
 echo "📂 Step 4: Restoring updates directory..."
 rm -rf updates 2>/dev/null || true
@@ -81,6 +84,7 @@ fi
 echo ""
 echo "💾 Step 6: Committing changes..."
 git add -A
+git add -f updates || true
 
 if ! git diff-index --quiet HEAD --; then
   TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
@@ -88,14 +92,14 @@ if ! git diff-index --quiet HEAD --; then
   echo "✅ Changes committed"
   
   echo ""
-  echo "📤 Pushing to ph-pages branch..."
+  echo "📤 Pushing to ${TARGET_BRANCH} branch..."
   
   # Strategy: Try normal push, if fails due to concurrent updates, retry with pull
   MAX_RETRIES=3
   RETRY_COUNT=0
   
   while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-    if git push origin ph-pages; then
+    if git push origin "${TARGET_BRANCH}"; then
       echo "✅ Changes pushed successfully"
       break
     else
@@ -109,11 +113,12 @@ if ! git diff-index --quiet HEAD --; then
         cp -r updates "$BACKUP_DIR2/"
         
         # Pull with merge (not rebase, to avoid conflicts)
-        if git pull --no-rebase origin ph-pages; then
+        if git pull --no-rebase origin "${TARGET_BRANCH}"; then
           # Restore our updates
           rm -rf updates
           cp -r "$BACKUP_DIR2/updates" .
           git add -A
+          git add -f updates || true
           git commit --amend --no-edit
           rm -rf "$BACKUP_DIR2"
           echo "✅ Merged and restored updates, retrying push..."
