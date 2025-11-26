@@ -43,14 +43,27 @@ fi
 rm -f .gitattributes
 git config --unset merge.ours.driver 2>/dev/null || true
 
-# Step 3: Generate reports
+# Step 3: Install dependencies and build (after merge, before update)
+echo "📦 Installing dependencies..."
+if ! yarn install; then
+  echo "❌ Failed to install dependencies"
+  exit 1
+fi
+
+echo "🔨 Building project..."
+if ! yarn build; then
+  echo "❌ Failed to build project"
+  exit 1
+fi
+
+# Step 4: Generate reports
 echo "📝 Generating daily reports..."
-if ! yarn install && yarn update; then
+if ! yarn update; then
   echo "❌ Failed to generate reports"
   exit 1
 fi
 
-# Step 4: Commit and push changes
+# Step 5: Commit and push changes
 echo "💾 Committing changes..."
 if [ -d "updates" ] && [ "$(ls -A updates 2>/dev/null)" ]; then
   git add updates/
