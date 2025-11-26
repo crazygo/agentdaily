@@ -1,102 +1,102 @@
 # Product Research Daily Report
-Generated: 2025-11-26T15:31:18.616Z
+Generated: 2025-11-26T16:41:25.527Z
 
 ## 📦 New Products Discovered
 
-### 1. TrendRadar
-AI-powered news hotspot analysis tool that aggregates trends from 35 platforms with AI conversation features for trend tracking and sentiment analysis.
-
-🔗 [Visit](https://github.com/sansan0/TrendRadar)
-📂 Category: CLI Tool
-📍 Source: GitHub Trending
-
----
-
-### 2. ADK-Go
-A Go toolkit for building, evaluating and deploying sophisticated AI agents.
-
-🔗 [Visit](https://github.com/google/adk-go)
-📂 Category: Framework
-📍 Source: GitHub Trending
-
----
-
-### 3. LightRAG
-Simple and Fast Retrieval-Augmented Generation implementation, recognized for EMNLP2025. Focuses on efficient RAG systems for AI applications.
-
-🔗 [Visit](https://github.com/HKUDS/LightRAG)
-📂 Category: Library
-📍 Source: GitHub Trending
-
----
-
-### 4. VERL
-Volcano Engine's Reinforcement Learning framework for Large Language Models, designed for training and optimizing LLMs.
-
-🔗 [Visit](https://github.com/volcengine/verl)
-📂 Category: Framework
-📍 Source: GitHub Trending
-
----
-
-### 5. Memori
-Open-source memory engine for LLMs, AI agents & multi-agent systems, providing persistent memory capabilities for AI applications.
+### 1. Memori
+Open-source SQL-Native memory engine for LLMs and AI agents. Provides persistent, queryable memory with one line of code. Supports SQLite, PostgreSQL, MySQL databases with 80-90% cost savings over vector databases.
 
 🔗 [Visit](https://github.com/GibsonAI/Memori)
 📂 Category: Library
-📍 Source: GitHub Trending
+📍 Source: GitHub
+
+---
+
+### 2. Serena
+A powerful coding agent toolkit providing semantic retrieval and editing capabilities for AI development tools.
+
+🔗 [Visit](https://github.com/oraios/serena)
+📂 Category: Framework
+📍 Source: GitHub
+
+---
+
+### 3. KiloCode
+Open-source VS Code AI agent with code generation, task automation, refactoring, MCP server integration, and multi-mode operation capabilities.
+
+🔗 [Visit](https://github.com/Kilo-Org/kilocode)
+📂 Category: IDE Extension
+📍 Source: GitHub
+
+---
+
+### 4. CCPM
+Project management system for Claude Code using GitHub Issues and Git worktrees for parallel agent execution with context preservation and GitHub native integration.
+
+🔗 [Visit](https://github.com/automazeio/ccpm)
+📂 Category: Autonomous Agent
+📍 Source: GitHub
+
+---
+
+### 5. AiderDesk
+Desktop application for the Aider AI assistant featuring multi-project management, Git worktrees support, and IDE integration.
+
+🔗 [Visit](https://github.com/hotovo/aider-desk)
+📂 Category: CLI Tool
+📍 Source: GitHub
+
+---
+
+### 6. OpenAgents
+Open platform for language agents featuring Data Agent for analysis, Plugins Agent with 200+ tools, and Web Agent for browsing. Includes easy deployment and chat web UI.
+
+🔗 [Visit](https://github.com/xlang-ai/OpenAgents)
+📂 Category: Autonomous Agent
+📍 Source: GitHub
+
+---
+
+### 7. llmfuse
+A self-compressing filesystem backed by an LLM, providing AI-powered file compression and retrieval capabilities.
+
+🔗 [Visit](https://github.com/llmfuse/llmfuse)
+📂 Category: CLI Tool
+📍 Source: Lobsters
+
+---
+
+### 8. Knapsack
+Developer productivity platform that helps bridge the gap between design and engineering teams, recently raised $10M in funding.
+
+🔗 [Visit](https://techcrunch.com/tag/developer-tools/)
+📂 Category: Autonomous Agent
+📍 Source: News
 
 ---
 
 ## 🔄 Whitelist Product Updates
 
-### 1. Cursor: Series D Funding Round of $2.3B
-Cursor announced raising their Series D funding round of $2.3B and have passed $1B in annualized revenue. The company is used by tens of thousands of enterprises, including Salesforce, NVIDIA, and PwC.
+### 1. GitHub Copilot: Copilot agent sessions on GitHub Mobile for Android
+Copilot agent sessions from external apps are now available on GitHub Mobile for Android
 
-🏷️ Type: announcement
-📅 Date: 2025-11-01
-🔗 [Read more](https://cursor.com/)
-
----
-
-### 2. Cursor: Version 2.1 - Improved Plan Mode and AI Code Review
-Released version 2.1 with improved Plan Mode, AI Code Review in Editor, and other enhancements.
-
-🏷️ Type: release
-📅 Date: 2025-11-21
-🔗 [Read more](https://cursor.com/)
-
----
-
-### 3. GitHub Copilot: Agentic Security Principles
-Blog post about how GitHub's agentic security principles make AI agents as secure as possible.
-
-🏷️ Type: announcement
+🏷️ Type: feature
 📅 Date: 2025-11-25
-🔗 [Read more](https://github.blog)
+🔗 [Read more](https://github.blog/changelog/)
 
 ---
 
-### 4. GitHub Copilot: Next Edit Suggestions Through Custom Model Training
-Evolution of GitHub Copilot's next edit suggestions through custom model training.
+### 2. GitHub Copilot: Claude Opus 4.5 Public Preview
+Claude Opus 4.5 is in public preview for GitHub Copilot
 
 🏷️ Type: feature
-📅 Date: 2025-11-20
-🔗 [Read more](https://github.blog)
+📅 Date: 2025-11-24
+🔗 [Read more](https://github.blog/changelog/)
 
 ---
 
-### 5. GitHub Copilot: Making Copilot Smarter with Fewer Tools
-Improvements to make GitHub Copilot smarter with fewer tools.
-
-🏷️ Type: feature
-📅 Date: 2025-11-19
-🔗 [Read more](https://github.blog)
-
----
-
-### 6. Windsurf: GPT 5.1, GPT 5.1-Codex, and GPT-5.1-Codex Mini Models
-New GPT 5.1 models are now available in Windsurf, delivering an upgrade for agentic coding with variable thinking and improved steerability.
+### 3. Windsurf: GPT 5.1 Models Available
+GPT 5.1, GPT 5.1-Codex, and GPT-5.1-Codex Mini are now available in Windsurf
 
 🏷️ Type: feature
 📅 Date: 2025-11-13
@@ -104,115 +104,129 @@ New GPT 5.1 models are now available in Windsurf, delivering an upgrade for agen
 
 ---
 
+### 4. GitHub Copilot: OpenAI GPT-5.1 Models Public Preview
+OpenAI's GPT-5.1 models in public preview for GitHub Copilot
+
+🏷️ Type: feature
+📅 Date: 2025-11-13
+🔗 [Read more](https://github.blog/changelog/)
+
+---
+
+### 5. Cursor: Series D Funding Announcement
+Cursor raised Series D of $2.3B and has passed $1B in annualized revenue
+
+🏷️ Type: announcement
+📅 Date: 2025-11-13
+🔗 [Read more](https://cursor.com/blog)
+
+---
+
+### 6. Continue: CLI Beta Release v1.5.14
+Latest CLI beta release with security improvements, command validation, and config secrets handling
+
+🏷️ Type: release
+📅 Date: 2025-11-26
+🔗 [Read more](https://github.com/continuedev/continue/releases)
+
+---
+
+### 7. Aider: Version 0.86.0 Release
+Added support for all GPT-5 models and Grok-4 via xAI integration
+
+🏷️ Type: release
+📅 Date: 2025-08-09
+🔗 [Read more](https://github.com/paul-gauthier/aider/releases)
+
+---
+
 ## 💡 Technical Insights & Leader Opinions
 
-### 1. Claude Opus 4.5 - 'Best Model in the World for Coding'
-Anthropic's new Claude Opus 4.5 model claims to be the best model in the world for coding, agents, and computer use. Simon Willison discusses the increasing difficulty of evaluating new LLMs as models become more capable.
+### 1. Google Antigravity Security Vulnerability
+Security vulnerability discovered allowing data exfiltration via prompt injection attacks
 
 ✍️ Author: Simon Willison
 📌 Type: technical
 📍 Source: Blog
 🔗 [Read more](https://simonwillison.net/)
-🏷️ Topics: Claude, LLM evaluation, AI coding, Model comparison
+🏷️ Topics: security, prompt-injection, LLM-safety, vulnerability
 
 ---
 
-### 2. Google Antigravity Security Vulnerability
-A security vulnerability in Google's Antigravity IDE allows prompt injection attacks to steal AWS credentials. This highlights security concerns in AI coding tools and IDEs.
+### 2. Claude Opus 4.5 Release
+Released as 'best model in the world for coding, agents, and computer use' with enhanced capabilities
 
 ✍️ Author: Simon Willison
 📌 Type: technical
 📍 Source: Blog
 🔗 [Read more](https://simonwillison.net/)
-🏷️ Topics: Security, Prompt injection, AI IDEs, Google Antigravity
+🏷️ Topics: Claude, coding-models, AI-agents, model-release
 
 ---
 
-### 3. Constant-time Support in LLVM
-Trail of Bits contributes compiler-level protection against timing attacks in cryptographic code. This advancement benefits secure AI coding practices.
+### 3. LLVM Constant-Time Security Support
+LLVM adding constant-time support to protect cryptographic code from timing attacks
 
 ✍️ Author: Simon Willison
 📌 Type: technical
 📍 Source: Blog
 🔗 [Read more](https://simonwillison.net/)
-🏷️ Topics: Security, Compilers, Cryptography, LLVM
+🏷️ Topics: security, LLVM, cryptography, timing-attacks
 
 ---
 
-### 4. NNGPT: Rethinking AutoML with Large Language Models
-Research paper exploring how LLMs can revolutionize automated machine learning processes, potentially impacting AI-assisted coding tools.
+### 4. Gemini 3 Pro Released
+Google's Gemini 3 Pro released with improved benchmarks and enhanced capabilities
 
-✍️ Author: Kochnev et al
+✍️ Author: Simon Willison
 📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/list/cs.AI/recent)
-🏷️ Topics: AutoML, LLMs, Research, Neural architecture search
-
----
-
-### 5. DRAFT-RL: Multi-Agent Chain-of-Draft Reasoning
-Research on reinforcement learning-enhanced LLMs using multi-agent chain-of-draft reasoning, relevant to complex coding tasks and agent collaboration.
-
-✍️ Author: Li et al
-📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/list/cs.AI/recent)
-🏷️ Topics: Multi-agent systems, Reinforcement learning, LLMs, Reasoning
-
----
-
-### 6. Fara-7B: An Efficient Agentic Model for Computer Use
-Research presenting a 7B parameter model designed specifically for computer use tasks, potentially applicable to AI coding assistants.
-
-✍️ Author: Awadallah et al
-📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/list/cs.AI/recent)
-🏷️ Topics: Agentic AI, Computer use, Efficient models, Code generation
-
----
-
-### 7. HeaRT: Hierarchical Circuit Reasoning for AMS Design
-A hierarchical circuit reasoning tree-based agentic framework for analog/mixed-signal design optimization, demonstrating specialized AI applications in engineering.
-
-✍️ Author: Poddar et al
-📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/list/cs.AI/recent)
-🏷️ Topics: Hardware design, Agent frameworks, Hierarchical reasoning, Engineering AI
-
----
-
-### 8. Code a Simple RAG from Scratch
-Hugging Face tutorial on building retrieval-augmented generation systems from scratch, relevant for AI coding education and tool development.
-
-✍️ Author: Hugging Face
-📌 Type: tutorial
 📍 Source: Blog
-🔗 [Read more](https://www.huggingface.co/blog)
-🏷️ Topics: RAG, Tutorial, AI coding, Education
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: Gemini, Google, LLM-models, benchmarks
 
 ---
 
-### 9. Mastering Tensor Dimensions in Transformers
-Technical guide on understanding tensor operations in transformer models, essential knowledge for AI developers working with coding models.
+### 5. OpenAI GPT-5.1-Codex-Max for Agentic Coding
+New OpenAI model specifically designed for agentic coding tasks with context compaction capabilities
 
-✍️ Author: Hugging Face
-📌 Type: tutorial
+✍️ Author: Simon Willison
+📌 Type: technical
 📍 Source: Blog
-🔗 [Read more](https://www.huggingface.co/blog)
-🏷️ Topics: Transformers, Tensors, Deep learning, AI education
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: OpenAI, GPT, coding-models, context-compaction
 
 ---
 
-### 10. Hacker News AI Discussions
-Active community discussions about AI effectiveness, open-source chat UIs, and visual intelligence models like FLUX.2, reflecting developer sentiment.
+### 6. AI Agent Design Challenges
+AI agent design highlighted as 'still hard' due to fundamental model differences and implementation challenges
 
-✍️ Author: Hacker News Community
-📌 Type: discussion
-📍 Source: HN
-🔗 [Read more](https://news.ycombinator.com/)
-🏷️ Topics: Community, AI tools, Open source, Developer opinions
+✍️ Author: Simon Willison
+📌 Type: opinion
+📍 Source: Blog
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: AI-agents, agent-design, LLM-limitations, challenges
+
+---
+
+### 7. Olmo 3 Open LLM Release
+Released as a fully open LLM with complete training data transparency, advancing open source AI
+
+✍️ Author: Simon Willison
+📌 Type: technical
+📍 Source: Blog
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: open-source, Olmo, LLM-training, transparency
+
+---
+
+### 8. Google Nano Banana Pro for Image Generation
+Google's Gemini 3 Pro Image model noted as best-in-class for image generation capabilities
+
+✍️ Author: Simon Willison
+📌 Type: technical
+📍 Source: Blog
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: image-generation, Google, multimodal, Gemini
 
 ---
 
