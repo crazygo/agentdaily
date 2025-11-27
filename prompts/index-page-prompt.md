@@ -83,9 +83,10 @@ For each day, generate a semantic `<article>` or card component with:
 - **Formatted Date**: Display the date prominently (e.g., "November 26, 2025")
 - **Summary Section**: Show a brief summary of the day's content:
   - Analyze the JSON structure and count items in each content category/array you find
-  - Display counts appropriately based on what content types exist (e.g., "3 new items", "2 updates", etc.)
+  - Derive meaningful labels from array keys (e.g., if you find an array named `newProducts`, display as "X products"; for `insights`, display as "X insights")
 - **Highlights**: Display 1-2 featured items from the data:
-  - Find the first item with a title and description from the content arrays
+  - Find the first item with a title and description from any content array
+  - If multiple arrays exist, prioritize arrays that seem most interesting to readers (products, insights, updates, etc.)
   - Show its title and a brief description to give readers a preview
 - **"Read Full Report" Link**: Link to the day's folder using a relative path like `2025-11-26/` (no leading slash)
 
