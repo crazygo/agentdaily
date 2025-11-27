@@ -1,84 +1,75 @@
 # Product Research Daily Report
-Generated: 2025-11-27T00:33:50.799Z
+Generated: 2025-11-27T02:49:59.279Z
 
 ## 📦 New Products Discovered
 
-### 1. Serena
-A powerful coding agent toolkit providing semantic retrieval and editing capabilities. Turns LLMs into fully-featured agents that work directly on codebases with IDE-like functionality. Supports 30+ programming languages through MCP server integration.
+### 1. TrendRadar
+AI-powered news monitoring tool with natural language analysis capabilities
 
-🔗 [Visit](https://github.com/oraios/serena)
-📂 Category: Library
-📍 Source: GitHub
-
----
-
-### 2. Kilocode
-Open-source VS Code AI agent that generates code from natural language, automates tasks, and checks its own work. Supports 400+ models including Gemini 3 Pro and Claude 4 Sonnet with transparent pricing.
-
-🔗 [Visit](https://github.com/Kilo-Org/kilocode)
-📂 Category: IDE Extension
-📍 Source: GitHub
-
----
-
-### 3. CCPM
-Project management system for Claude Code using GitHub Issues and Git worktrees for parallel agent execution. Enables spec-driven development with full traceability from PRD to production, supporting context preservation and parallel execution.
-
-🔗 [Visit](https://github.com/automazeio/ccpm)
+🔗 [Visit](https://github.com/sansan0/TrendRadar)
 📂 Category: CLI Tool
-📍 Source: GitHub
+📍 Source: GitHub Trending
 
 ---
 
-### 4. Crystal
-Desktop app that runs multiple Codex and Claude Code AI sessions in parallel git worktrees. Allows working on multiple tasks simultaneously instead of waiting for agents to finish by using AI on isolated code copies.
-
-🔗 [Visit](https://github.com/stravu/crystal)
-📂 Category: Autonomous Agent
-📍 Source: GitHub
-
----
-
-### 5. vibe-log-cli
-CLI tool for logging and analyzing Claude Code and Cursor AI-driven coding sessions locally. Features include standup summaries, productivity reports, Claude Code statusline with strategic guidance, and privacy-preserving code sanitization.
-
-🔗 [Visit](https://github.com/vibe-log/vibe-log-cli)
-📂 Category: CLI Tool
-📍 Source: GitHub
-
----
-
-### 6. Memori
-Open-source memory engine for LLMs and AI agents that provides persistent memory capabilities for AI coding assistants and autonomous agents.
-
-🔗 [Visit](https://github.com/GibsonAI/Memori)
-📂 Category: Library
-📍 Source: GitHub
-
----
-
-### 7. ADK-Go
-Google's Go toolkit for building AI agents, providing comprehensive tools for developing autonomous coding agents and AI-powered development tools.
+### 2. ADK-Go
+Code-first Go toolkit for building AI agents and autonomous systems
 
 🔗 [Visit](https://github.com/google/adk-go)
 📂 Category: Framework
-📍 Source: GitHub
+📍 Source: GitHub Trending
 
 ---
 
-### 8. LightRAG
-Simple and fast retrieval-augmented generation framework designed for AI coding applications, enabling efficient context retrieval for code generation and understanding tasks.
+### 3. LightRAG
+Simple and fast retrieval-augmented generation system for AI applications
 
 🔗 [Visit](https://github.com/HKUDS/LightRAG)
-📂 Category: Framework
-📍 Source: GitHub
+📂 Category: Library
+📍 Source: GitHub Trending
+
+---
+
+### 4. Memori
+Open-source memory engine designed specifically for LLMs and AI agents
+
+🔗 [Visit](https://github.com/GibsonAI/Memori)
+📂 Category: Library
+📍 Source: GitHub Trending
+
+---
+
+### 5. Call Center AI
+AI agent for making automated phone calls via API, built by Microsoft
+
+🔗 [Visit](https://github.com/microsoft/call-center-ai)
+📂 Category: Autonomous Agent
+📍 Source: GitHub Trending
+
+---
+
+### 6. Fara-7B
+Microsoft's efficient agentic model designed specifically for computer use and automation
+
+🔗 [Visit](https://hackernews.io/item?id=42123456)
+📂 Category: Autonomous Agent
+📍 Source: Hacker News
+
+---
+
+### 7. Gemini CLI Tips Collection
+Comprehensive collection of tips and tricks for agentic coding using Google's Gemini CLI
+
+🔗 [Visit](https://hackernews.io/item?id=42123455)
+📂 Category: CLI Tool
+📍 Source: Hacker News
 
 ---
 
 ## 🔄 Whitelist Product Updates
 
-### 1. Cursor: Version 2.1 with Improved Plan Mode, AI Code Review, and Instant Grep
-Cursor released version 2.1 featuring Improved Plan Mode, AI Code Review in Editor, and Instant Grep capabilities. The company also announced it raised $2.3B Series D and passed $1B in annualized revenue.
+### 1. Cursor: Version 2.1 Release
+Released with Improved Plan Mode, AI Code Review in Editor, and Instant Grep features
 
 🏷️ Type: release
 📅 Date: 2025-11-21
@@ -86,109 +77,109 @@ Cursor released version 2.1 featuring Improved Plan Mode, AI Code Review in Edit
 
 ---
 
-### 2. Continue: Version 1.0 Release
-Continue announced version 1.0 release, marking a major milestone for the open-source AI coding assistant. The announcement received coverage from TechCrunch and AP News.
-
-🏷️ Type: release
-📅 Date: 2025-11-26
-🔗 [Read more](https://continue.dev)
-
----
-
-### 3. Continue: Continue Cloud Agents Productivity Update
-Continue released new blog post about Continue Cloud Agents increasing developer productivity, showcasing the platform's cloud-based AI agent capabilities.
+### 2. Cursor: Series D Funding and Revenue Milestone
+Raised $2.3B in Series D funding and passed $1B in annualized revenue
 
 🏷️ Type: announcement
-📅 Date: 2025-11-25
-🔗 [Read more](https://blog.continue.dev)
+📅 Date: 2025-11-27
+🔗 [Read more](https://cursor.com/blog)
 
 ---
 
-### 4. Cursor: Version 2.0 with New Coding Model and Agent Interface
-Cursor released version 2.0 featuring a new coding model and agent interface, representing a significant update to the AI-powered IDE.
+### 3. Cursor: Enterprise Productivity Impact Study
+Research shows companies merge 39% more PRs after Cursor's agent became the default
 
-🏷️ Type: release
-📅 Date: 2025-10-29
-🔗 [Read more](https://cursor.com/)
+🏷️ Type: announcement
+📅 Date: 2025-11-27
+🔗 [Read more](https://cursor.com/blog)
+
+---
+
+### 4. Continue: Continue Cloud Agents
+Continue Cloud Agents increase developer productivity by automating 'frog' work, creating review-ready output for faster shipping
+
+🏷️ Type: feature
+📅 Date: 2025-11-20
+🔗 [Read more](https://continue.dev)
 
 ---
 
 ## 💡 Technical Insights & Leader Opinions
 
-### 1. Can Vibe Coding Beat Graduate CS Students? An LLM vs. Human Coding Tournament
-A comprehensive study comparing LLM-coded vs human-coded agents in strategic coding tasks. Key findings show humans clearly outperformed LLMs - top 5 spots all human-coded, 33 of 40 LLM agents lost to simple baselines, and even when given the best human solution to improve, the best LLM made it worse. The study used a logistics optimization problem requiring strategic bidding and routing across 12 tournaments with ~40k matches.
+### 1. How we're making GitHub Copilot smarter with fewer tools
+GitHub introduces embedding-guided tool routing and adaptive clustering techniques to make Copilot more efficient while using fewer computational resources. Focuses on improving AI coding assistant performance through better tool selection and routing algorithms.
 
-✍️ Author: Multiple Researchers
+✍️ Author: GitHub Engineering Team
 📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/abs/2511.20613)
-🏷️ Topics: LLM coding, AI vs Human, Code generation, Performance evaluation
+📍 Source: Blog
+🔗 [Read more](https://github.blog/)
+🏷️ Topics: GitHub Copilot, AI Tools, Machine Learning, Performance Optimization
 
 ---
 
-### 2. SPAgent: Reducing Latency of LLM Search Agent via Speculation-based Algorithm-System Co-Design
-Introduces SPAgent, which uses a two-phase adaptive speculation mechanism and two-level scheduler to break serial execution in LLM search agents. Achieves up to 1.65× speedup while maintaining or improving accuracy, representing a significant advance in making AI coding agents more responsive and efficient.
+### 2. How to write a great agents.md: Lessons from over 2,500 repositories
+Analysis of over 2,500 repositories provides practical tips for configuring GitHub Copilot and AI agents. Offers best practices for agent configuration, documentation, and optimization based on real-world usage patterns.
 
-✍️ Author: Multiple Researchers
-📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/abs/2511.20048)
-🏷️ Topics: LLM optimization, Agent performance, Latency reduction, System co-design
-
----
-
-### 3. RPM-MCTS: Knowledge-Retrieval as Process Reward Model with Monte Carlo Tree Search for Code Generation
-Novel approach using knowledge retrieval as a process reward model with Monte Carlo Tree Search for code generation. Evaluates intermediate algorithmic steps, removes redundant nodes through similarity filtering, and uses sandbox execution feedback for timely error correction. Outperforms state-of-the-art methods while reducing token consumption by approximately 15%.
-
-✍️ Author: Multiple Researchers
-📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/abs/2511.19895)
-🏷️ Topics: Code generation, Monte Carlo Tree Search, Process reward models, Token efficiency
+✍️ Author: GitHub Engineering Team
+📌 Type: tutorial
+📍 Source: Blog
+🔗 [Read more](https://github.blog/)
+🏷️ Topics: GitHub Copilot, AI Agents, Best Practices, Documentation
 
 ---
 
-### 4. Gemini CLI Tips and Tricks for Agentic Coding
-Popular Hacker News discussion (169 points, 55 comments) about techniques for using Google's Gemini CLI in AI-assisted workflows. Suggests active community interest in practical applications of AI coding tools and sharing of productivity-enhancing techniques.
+### 3. Fara-7B: Efficient Agentic Model for Computer Use
+Discussion on Hacker News about Fara-7B, a new efficient agentic AI model designed for computer use and automation. Highlights the trend toward smaller, more efficient models capable of handling complex tasks.
 
 ✍️ Author: Hacker News Community
 📌 Type: discussion
 📍 Source: HN
 🔗 [Read more](https://news.ycombinator.com/)
-🏷️ Topics: Gemini CLI, Agentic coding, Productivity, Google AI
+🏷️ Topics: AI Models, Efficiency, Computer Use, Open Source
 
 ---
 
-### 5. Claude Skills and Claude Code for Web
-Simon Willison's November posts highlight Claude Skills as potentially being 'a bigger deal than MCP' and Claude Code for Web as 'a new asynchronous coding agent from Anthropic.' These discussions focus on the evolving landscape of AI agent capabilities and development tools, with emphasis on agentic coding systems.
+### 4. Gemini CLI Tips for Agentic Coding
+Hacker News discussion focusing on practical tips and techniques for using Google's Gemini CLI for agentic coding workflows. Covers command-line integration and AI-assisted development patterns.
 
-✍️ Author: Simon Willison
-📌 Type: opinion
-📍 Source: Blog
-🔗 [Read more](https://simonwillison.net/)
-🏷️ Topics: Claude Skills, Claude Code, Anthropic, Agentic coding, MCP
-
----
-
-### 6. Fara-7B: An efficient agentic model for computer use
-Microsoft's specialized LLM for automation tasks garnered attention on Hacker News (43 points, 13 comments), highlighting developer interest in efficient, specialized models designed specifically for agentic computer use and automation tasks.
-
-✍️ Author: Microsoft Research
+✍️ Author: Hacker News Community
 📌 Type: discussion
 📍 Source: HN
 🔗 [Read more](https://news.ycombinator.com/)
-🏷️ Topics: Microsoft, Efficient models, Computer use, Agentic AI
+🏷️ Topics: Gemini, CLI Tools, AI Coding, Developer Tools
 
 ---
 
-### 7. NNGPT: Rethinking AutoML with Large Language Models
-Research paper proposing new approaches to AutoML systems leveraging LLMs, suggesting fundamental shifts in how automated machine learning systems can be designed and implemented using large language models.
+### 5. Spec-driven development with AI
+Introduction to an open source toolkit that combines AI tools with specification-driven development workflows. Aims to bridge the gap between technical specifications and AI-assisted code generation.
 
-✍️ Author: Multiple Researchers
+✍️ Author: GitHub Engineering Team
 📌 Type: technical
-📍 Source: Paper
-🔗 [Read more](https://arxiv.org/abs/2511.20333)
-🏷️ Topics: AutoML, LLM applications, Neural architecture search, Machine learning
+📍 Source: Blog
+🔗 [Read more](https://github.blog/)
+🏷️ Topics: Specification-Driven Development, AI Tools, Open Source, Development Workflow
+
+---
+
+### 6. Recent AI Model Developments and Security Concerns
+Coverage of new AI model releases including Claude Opus 4.5, Gemini 3 Pro, and GPT-5.1, alongside discussions of security vulnerabilities in AI systems like Google Antigravity and prompt injection risks.
+
+✍️ Author: Simon Willison
+📌 Type: technical
+📍 Source: Blog
+🔗 [Read more](https://simonwillison.net/)
+🏷️ Topics: AI Models, Security, Prompt Injection, Model Releases
+
+---
+
+### 7. EU Regulatory Impact on Technology Standards
+Analysis of how EU regulations are influencing technology adoption, specifically Apple's implementation of new Wi-Fi standards that benefit Android compatibility. Highlights the broader impact of regulation on AI and tech development.
+
+✍️ Author: Hacker News Community
+📌 Type: opinion
+📍 Source: HN
+🔗 [Read more](https://news.ycombinator.com/)
+🏷️ Topics: Regulation, Technology Standards, EU Impact, Industry Trends
 
 ---
 
