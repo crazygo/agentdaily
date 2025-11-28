@@ -9,16 +9,12 @@
       const currentPath = window.location.pathname;
       const pathParts = currentPath.split('/').filter(p => p);
       
-      // Calculate relative path to updates root
-      let manifestPath = '/updates/manifest.json';
-      if (pathParts.includes('updates')) {
-        const updatesIndex = pathParts.indexOf('updates');
+      // Calculate relative path to updates root (no absolute prefix, so GH Pages base paths still work)
+      let manifestPath = 'manifest.json';
+      const updatesIndex = pathParts.indexOf('updates');
+      if (updatesIndex !== -1) {
         const depth = pathParts.length - updatesIndex - 1;
-        if (depth > 0) {
-          manifestPath = '../'.repeat(depth) + 'manifest.json';
-        } else {
-          manifestPath = './manifest.json';
-        }
+        manifestPath = depth > 0 ? '../'.repeat(depth) + 'manifest.json' : 'manifest.json';
       }
       
       const response = await fetch(manifestPath);
@@ -61,7 +57,8 @@
     }
     
     // Build navigation HTML
-    const isIndexPage = currentPath.endsWith('updates/') || currentPath.endsWith('updates/index.html');
+    const lastSegment = pathParts[pathParts.length - 1];
+    const isIndexPage = pathParts.includes('updates') && (lastSegment === 'updates' || lastSegment === 'index.html');
     let navHTML = '<div class="nav-bar">';
     
     if (!isIndexPage) {
