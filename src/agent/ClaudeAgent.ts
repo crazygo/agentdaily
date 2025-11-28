@@ -74,6 +74,8 @@ export class ClaudeAgent {
               },
             },
           },
+          // Disable WebSearch tool, keep all other tools enabled
+          // disallowedTools: ['WebSearch'],
         },
       })) {
         messageCount++;
