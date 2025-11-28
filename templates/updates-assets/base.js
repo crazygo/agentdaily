@@ -62,7 +62,7 @@
     let navHTML = '<div class="nav-bar">';
     
     if (!isIndexPage) {
-      navHTML += '<a href="../index.html" class="nav-home">🏠 Home</a>';
+      navHTML += '<a href="../index.html" class="nav-home">Home</a>';
     }
     
     if (prevDate) {
