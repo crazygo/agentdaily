@@ -57,8 +57,7 @@ Iterate through the **latest 7 days** from the manifest. For each day, read `upd
 2.  **Content Preview Grid**:
     - Analyze the JSON data. Look for arrays like `products`, `updates`, or `insights`.
     - **Render a Preview Section**: Instead of just a "Read More" button, try to render a preview of the content *if possible* based on the JSON structure.
-    - **Style**: Use the "Card" style from the reference:
-      - **Emoji Headers**: e.g., "🚀 New Products", "📝 Daily Report".
+    - **Style**: Use the "Card" style from the reference (no emojis in headings or labels).
       - **Grid Layout**: If multiple items exist (like products), display them in a small 2-column grid.
       - **Typography**: Item titles in **Bold Serif**, descriptions in Sans-Serif.
       - **Tags**: If categories exist, show them as small, uppercase, light-gray badges.
@@ -73,7 +72,7 @@ You must generate CSS (inline or extending base.css) to match the specific "Agen
   - **Headings (Dates, Section Titles)**: MUST use a **Serif font-family** (e.g., `font-family: 'Merriweather', 'Times New Roman', serif;`).
   - **Body Text**: MUST use a **Sans-Serif font-family** (e.g., `font-family: 'Inter', system-ui, sans-serif;`).
 - **Color Palette**:
-  - Background: `#ffffff` (Pure White).
+ - Background: `#ffffff` (Pure White).
   - Text: `#1a1a1a` (Dark Black) for headings, `#4a4a4a` (Dark Gray) for body.
   - Accents: `#f3f4f6` (Light Gray) for tag backgrounds.
 - **Visual Details**:
@@ -83,7 +82,8 @@ You must generate CSS (inline or extending base.css) to match the specific "Agen
 ### 4. SEO & Technical
 - **Meta**: Title "Agent Daily - Updates", standard meta description.
 - **Responsiveness**: On mobile screens (<768px), hide the Left Sidebar or move it to a hamburger menu, and make the Right Column full width.
-- **Static Integrity**: Ensure all loops and data insertion happen at generation time. No client-side fetch.
+ - **Static Integrity**: Ensure all loops and data insertion happen at generation time. No client-side fetch.
+  - **No Emojis**: Do not insert emojis in any headings, labels, or body text.
 
 ## Important Notes
 1. **Read data files**: You MUST read `updates/{YYYY-MM-DD}/data.json` to populate the "Content Preview Grid". Don't just list the date.

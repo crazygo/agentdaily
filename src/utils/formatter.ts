@@ -16,49 +16,49 @@ export function formatAsMarkdown(result: ResearchResult): string {
   md += `Generated: ${result.generatedAt}\n\n`;
 
   // New Products Section
-  md += `## 📦 New Products Discovered\n\n`;
+  md += `## New Products Discovered\n\n`;
   if (newProducts.length === 0) {
     md += `_No new products found in this research cycle._\n\n`;
   } else {
     newProducts.forEach((product, index) => {
       md += `### ${index + 1}. ${product.title}\n`;
       md += `${product.description}\n\n`;
-      if (product.url) md += `🔗 [Visit](${product.url})\n`;
-      if (product.category) md += `📂 Category: ${product.category}\n`;
-      md += `📍 Source: ${product.source}\n\n`;
+      if (product.url) md += `Visit: [link](${product.url})\n`;
+      if (product.category) md += `Category: ${product.category}\n`;
+      md += `Source: ${product.source}\n\n`;
       md += `---\n\n`;
     });
   }
 
   // Whitelist Updates Section
-  md += `## 🔄 Whitelist Product Updates\n\n`;
+  md += `## Whitelist Product Updates\n\n`;
   if (whitelistUpdates.length === 0) {
     md += `_No updates found for tracked products._\n\n`;
   } else {
     whitelistUpdates.forEach((update, index) => {
       md += `### ${index + 1}. ${update.productName}: ${update.title}\n`;
       md += `${update.description}\n\n`;
-      md += `🏷️ Type: ${update.updateType}\n`;
-      if (update.date) md += `📅 Date: ${update.date}\n`;
-      if (update.url) md += `🔗 [Read more](${update.url})\n`;
+      md += `Type: ${update.updateType}\n`;
+      if (update.date) md += `Date: ${update.date}\n`;
+      if (update.url) md += `Read more: [link](${update.url})\n`;
       md += `\n---\n\n`;
     });
   }
 
   // Technical Insights Section
-  md += `## 💡 Technical Insights & Leader Opinions\n\n`;
+  md += `## Technical Insights & Leader Opinions\n\n`;
   if (insights.length === 0) {
     md += `_No new insights gathered._\n\n`;
   } else {
     insights.forEach((insight, index) => {
       md += `### ${index + 1}. ${insight.title}\n`;
       md += `${insight.description}\n\n`;
-      if (insight.author) md += `✍️ Author: ${insight.author}\n`;
-      md += `📌 Type: ${insight.type}\n`;
-      md += `📍 Source: ${insight.source}\n`;
-      if (insight.url) md += `🔗 [Read more](${insight.url})\n`;
+      if (insight.author) md += `Author: ${insight.author}\n`;
+      md += `Type: ${insight.type}\n`;
+      md += `Source: ${insight.source}\n`;
+      if (insight.url) md += `Read more: [link](${insight.url})\n`;
       if (insight.topics && insight.topics.length > 0) {
-        md += `🏷️ Topics: ${insight.topics.join(', ')}\n`;
+        md += `Topics: ${insight.topics.join(', ')}\n`;
       }
       md += `\n---\n\n`;
     });
@@ -80,7 +80,7 @@ export function formatForConsole(result: ResearchResult): void {
   const insights = Array.isArray(result.insights) ? result.insights : [];
 
   console.log('\n═══════════════════════════════════════════════════');
-  console.log('📦 NEW PRODUCTS DISCOVERED');
+  console.log('NEW PRODUCTS DISCOVERED');
   console.log('═══════════════════════════════════════════════════\n');
 
   if (newProducts.length === 0) {
@@ -89,14 +89,14 @@ export function formatForConsole(result: ResearchResult): void {
     newProducts.forEach((product, index) => {
       console.log(`${index + 1}. ${product.title}`);
       console.log(`   ${product.description}`);
-      if (product.category) console.log(`   📂 ${product.category}`);
-      if (product.url) console.log(`   🔗 ${product.url}`);
-      console.log(`   📍 Source: ${product.source}\n`);
+      if (product.category) console.log(`   Category: ${product.category}`);
+      if (product.url) console.log(`   Link: ${product.url}`);
+      console.log(`   Source: ${product.source}\n`);
     });
   }
 
   console.log('═══════════════════════════════════════════════════');
-  console.log('🔄 WHITELIST PRODUCT UPDATES');
+  console.log('WHITELIST PRODUCT UPDATES');
   console.log('═══════════════════════════════════════════════════\n');
 
   if (whitelistUpdates.length === 0) {
@@ -105,15 +105,15 @@ export function formatForConsole(result: ResearchResult): void {
     whitelistUpdates.forEach((update, index) => {
       console.log(`${index + 1}. ${update.productName}: ${update.title}`);
       console.log(`   ${update.description}`);
-      console.log(`   🏷️ Type: ${update.updateType}`);
-      if (update.date) console.log(`   📅 ${update.date}`);
-      if (update.url) console.log(`   🔗 ${update.url}`);
+      console.log(`   Type: ${update.updateType}`);
+      if (update.date) console.log(`   Date: ${update.date}`);
+      if (update.url) console.log(`   Link: ${update.url}`);
       console.log();
     });
   }
 
   console.log('═══════════════════════════════════════════════════');
-  console.log('💡 TECHNICAL INSIGHTS & LEADER OPINIONS');
+  console.log('TECHNICAL INSIGHTS & LEADER OPINIONS');
   console.log('═══════════════════════════════════════════════════\n');
 
   if (insights.length === 0) {
@@ -122,11 +122,11 @@ export function formatForConsole(result: ResearchResult): void {
     insights.forEach((insight, index) => {
       console.log(`${index + 1}. ${insight.title}`);
       console.log(`   ${insight.description}`);
-      if (insight.author) console.log(`   ✍️ ${insight.author}`);
-      console.log(`   📌 ${insight.type} | ${insight.source}`);
-      if (insight.url) console.log(`   🔗 ${insight.url}`);
+      if (insight.author) console.log(`   Author: ${insight.author}`);
+      console.log(`   ${insight.type} | ${insight.source}`);
+      if (insight.url) console.log(`   Link: ${insight.url}`);
       if (insight.topics && insight.topics.length > 0) {
-        console.log(`   🏷️ ${insight.topics.join(', ')}`);
+        console.log(`   Topics: ${insight.topics.join(', ')}`);
       }
       console.log();
     });
