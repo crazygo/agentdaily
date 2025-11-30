@@ -40,7 +40,7 @@ You must analyze the content of each item (Title + Description) and assign it to
 **1. Global Site Header (Crucial - Must be at the very top)**:
    - Placement: Inside the container, *before* the Two-Column layout.
    - **Content**:
-     - Main Logo: "Agent Daily" (Large, Centered, Serif Font, Bold).
+     - Main Logo: "Code Agent Daily" (Large, Centered, Serif Font, Bold).
      - Tagline: "Build your own daily with AI" (Small, Sans-serif, Gray).
      - Action: A `View on GitHub` icon/link pointing to repository.
      - Code example: 
