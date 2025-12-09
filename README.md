@@ -2,6 +2,8 @@
 
 A TypeScript-based product research daily report website focusing on the agentic coding area.
 
+[![](https://img.shields.io/badge/Build_with_GLM_Coding_Plan-5D6EFF)](https://www.bigmodel.cn/claude-code?ic=T3SS5DGX2N)
+
 ## Live Demo
 
 Explore the generated reports index (latest 7 days): https://youfocal.com/
