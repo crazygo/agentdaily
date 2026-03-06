@@ -4,7 +4,7 @@ const path = require('path');
 // Configuration
 const UPDATES_DIR = './updates';
 const OUTPUT_FILE = './updates/content.html';
-const LATEST_DATE = '2026-02-08';
+const LATEST_DATE = '2025-12-31';
 
 // Calculate 7-day range ending on latest date
 function getDateRange(latestDate) {
@@ -222,7 +222,7 @@ function generateHTML(items, dateRange) {
   html += `    <nav class="flex flex-col">\n`;
   html += `        <div class="py-3 px-4 mb-2 border-l-3 border-black bg-[#F7F7F7] cursor-pointer transition-all text-sm font-semibold text-black">\n`;
   html += `            <div class="font-medium mb-1">This Week</div>\n`;
-  html += `            <div class="text-xs text-[#6B6B6B]">${formatRangeDisplay(dateRange.start, dateRange.end)}, 2026</div>\n`;
+  html += `            <div class="text-xs text-[#6B6B6B]">${formatRangeDisplay(dateRange.start, dateRange.end)}, 2025</div>\n`;
   html += `        </div>\n`;
   html += `    </nav>\n`;
   html += `</aside>\n\n`;
@@ -231,7 +231,7 @@ function generateHTML(items, dateRange) {
   html += `<main class="min-w-0">\n`;
   html += `    <div class="mb-12">\n`;
   html += `        <h2 class="font-serif text-5xl font-bold text-black mb-4 tracking-tight">Weekly Report</h2>\n`;
-  html += `        <p class="text-xl text-[#292929] mb-4 font-normal">${formatDateDisplay(dateRange.start)}, 2026 – ${formatDateDisplay(dateRange.end)}, 2026</p>\n`;
+  html += `        <p class="text-xl text-[#292929] mb-4 font-normal">${formatDateDisplay(dateRange.start)}, 2025 – ${formatDateDisplay(dateRange.end)}, 2025</p>\n`;
   html += `        <p class="text-lg text-[#6B6B6B] leading-relaxed max-w-[800px]">A curated summary of the most important updates in AI from the last 7 days.</p>\n`;
   html += `    </div>\n\n`;
 
