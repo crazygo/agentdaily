@@ -83,8 +83,8 @@ function categorizeItem(item, itemType) {
 
 // Main aggregation function
 function aggregateWeekData() {
-  const startDate = '2026-03-31';
-  const endDate = '2026-04-06';
+  const startDate = '2026-05-30';
+  const endDate = '2026-06-05';
 
   const items = {
     'New Products': [],
@@ -189,12 +189,12 @@ function generateContentHTML(items) {
 
   let html = `<aside class="lg:sticky lg:top-10">
     <div class="mb-4">
-        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">Mar 31 - Apr 6</div>
+        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">May 30 - Jun 5</div>
     </div>
     <nav class="flex flex-col">
         <div class="py-3 px-4 mb-2 border-l-3 border-black bg-[#F7F7F7] cursor-pointer transition-all text-sm font-semibold text-black">
             <div class="font-medium mb-1">This Week</div>
-            <div class="text-xs text-[#6B6B6B]">Mar 31 - Apr 6, 2026</div>
+            <div class="text-xs text-[#6B6B6B]">May 30 - Jun 5, 2026</div>
         </div>
     </nav>
 </aside>
@@ -202,7 +202,7 @@ function generateContentHTML(items) {
 <main class="min-w-0">
     <div class="mb-12">
         <h2 class="font-serif text-5xl font-bold text-black mb-4 tracking-tight">Weekly Report</h2>
-        <p class="text-xl text-[#292929] mb-4 font-normal">Mar 31, 2026 – Apr 6, 2026</p>
+        <p class="text-xl text-[#292929] mb-4 font-normal">May 30, 2026 – June 5, 2026</p>
         <p class="text-lg text-[#6B6B6B] leading-relaxed max-w-[800px]">A curated summary of the most important updates in AI from the last 7 days.</p>
     </div>
 `;
