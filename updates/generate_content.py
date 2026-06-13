@@ -8,10 +8,10 @@ from collections import defaultdict
 def read_all_data():
     all_items = []
 
-    # Days to process (2026-04-22 to 2026-04-28)
+    # Days to process (2025-12-25 to 2025-12-31)
     dates = [
-        "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25",
-        "2026-04-26", "2026-04-27", "2026-04-28"
+        "2025-12-25", "2025-12-26", "2025-12-27", "2025-12-28",
+        "2025-12-29", "2025-12-30", "2025-12-31"
     ]
 
     for date in dates:
@@ -169,12 +169,12 @@ def generate_html(categories):
 
     html = '''<aside class="lg:sticky lg:top-10">
     <div class="mb-4">
-        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">Apr 22 - Apr 28</div>
+        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">Dec 25 - Dec 31</div>
     </div>
     <nav class="flex flex-col">
         <div class="py-3 px-4 mb-2 border-l-3 border-black bg-[#F7F7F7] cursor-pointer transition-all text-sm font-semibold text-black">
             <div class="font-medium mb-1">This Week</div>
-            <div class="text-xs text-[#6B6B6B]">Apr 22 - Apr 28, 2026</div>
+            <div class="text-xs text-[#6B6B6B]">Dec 25 - Dec 31, 2025</div>
         </div>
     </nav>
 </aside>
@@ -182,7 +182,7 @@ def generate_html(categories):
 <main class="min-w-0">
     <div class="mb-12">
         <h2 class="font-serif text-5xl font-bold text-black mb-4 tracking-tight">Weekly Report</h2>
-        <p class="text-xl text-[#292929] mb-4 font-normal">Apr 22, 2026 – Apr 28, 2026</p>
+        <p class="text-xl text-[#292929] mb-4 font-normal">Dec 25, 2025 – Dec 31, 2025</p>
         <p class="text-lg text-[#6B6B6B] leading-relaxed max-w-[800px]">A curated summary of the most important updates in AI from the last 7 days.</p>
     </div>
 '''
