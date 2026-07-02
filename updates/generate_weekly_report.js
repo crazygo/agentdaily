@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const weekDays = ['2026-06-13', '2026-06-14', '2026-06-15', '2026-06-16', '2026-06-17', '2026-06-18', '2026-06-19'];
+const weekDays = ['2025-12-25', '2025-12-26', '2025-12-27', '2025-12-28', '2025-12-29', '2025-12-30', '2025-12-31'];
 
 const allItems = { newProducts: [], newFeatures: [], newTechnologies: [], others: [] };
 const seenUrls = new Map();
@@ -11,15 +11,65 @@ function categorizeItem(item) {
   const description = (item.description || '').toLowerCase();
   const combined = title + ' ' + description;
 
-  if (combined.includes('launch') || combined.includes('released') || combined.includes('platform') || combined.includes('fable 5') || combined.includes('xcode') || combined.includes('microsoft scout') || combined.includes('kimi code') || combined.includes('niteshift') || combined.includes('minimax m3') || combined.includes('datasette agent')) {
+  // Check for product/item type first
+  if (item.category && (
+    item.category.includes('agent') ||
+    item.category.includes('AI') ||
+    item.category.includes('tool') ||
+    item.category.includes('workflow')
+  )) {
     return 'newProducts';
   }
-  if (combined.includes('paper') || combined.includes('research') || combined.includes('framework') || combined.includes('benchmark') || combined.includes('open-weights') || combined.includes('diffusiongemma')) {
+
+  // Check for new product indicators
+  if (combined.includes('launch') ||
+      combined.includes('platform') ||
+      combined.includes('announced') && (combined.includes('new') || combined.includes('app') || combined.includes('agent')) ||
+      combined.includes('spark') ||
+      combined.includes('zenflow') ||
+      combined.includes('vibe pocket') ||
+      combined.includes('toad') ||
+      combined.includes('agent designer') ||
+      combined.includes('minimax m2.1') ||
+      combined.includes('glm-4.7') ||
+      combined.includes('anthropic agent skills')) {
+    return 'newProducts';
+  }
+
+  // Check for research/paper indicators
+  if (item.source === 'ArXiv' ||
+      item.type === 'technical' ||
+      item.type === 'paper' ||
+      combined.includes('paper') ||
+      combined.includes('research') ||
+      combined.includes('benchmark') ||
+      combined.includes('evaluation') ||
+      combined.includes('llm year in review') && combined.includes('karpathy') ||
+      combined.includes('reinforcement learning') ||
+      combined.includes('semi-supervised') ||
+      combined.includes('formal verification') ||
+      combined.includes('revffn')) {
     return 'newTechnologies';
   }
-  if (combined.includes('update') || combined.includes('feature') || combined.includes('improvement') || combined.includes('beta') || combined.includes('version')) {
+
+  // Check for feature/update indicators
+  if (item.updateType === 'feature' ||
+      item.updateType === 'release' ||
+      item.productName ||
+      combined.includes('update') ||
+      combined.includes('feature') ||
+      combined.includes('improvement') ||
+      combined.includes('beta') ||
+      combined.includes('version') ||
+      combined.includes('visual editor') ||
+      combined.includes('codex cli') ||
+      combined.includes('gemini cli') ||
+      combined.includes('claude code') && (combined.includes('performance') || combined.includes('browser') || combined.includes('slack') || combined.includes('integration')) ||
+      combined.includes('windsurf') ||
+      combined.includes('copilot')) {
     return 'newFeatures';
   }
+
   return 'others';
 }
 
@@ -68,7 +118,7 @@ Object.keys(allItems).forEach(category => {
 });
 
 function generateContentHTML() {
-  let html = '<aside class="lg:sticky lg:top-10">\n    <div class="mb-4">\n        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">Jun 13 - Jun 19</div>\n    </div>\n    <nav class="flex flex-col">\n        <div class="py-3 px-4 mb-2 border-l-3 border-black bg-[#F7F7F7] cursor-pointer transition-all text-sm font-semibold text-black">\n            <div class="font-medium mb-1">This Week</div>\n            <div class="text-xs text-[#6B6B6B]">Jun 13 - Jun 19, 2026</div>\n        </div>\n    </nav>\n</aside>\n\n<main class="min-w-0">\n    <div class="mb-12">\n        <h2 class="font-serif text-5xl font-bold text-black mb-4 tracking-tight">Weekly Report</h2>\n        <p class="text-xl text-[#292929] mb-4 font-normal">Jun 13, 2026 – Jun 19, 2026</p>\n        <p class="text-lg text-[#6B6B6B] leading-relaxed max-w-[800px]">A curated summary of the most important updates in AI from the last 7 days.</p>\n    </div>\n';
+  let html = '<aside class="lg:sticky lg:top-10">\n    <div class="mb-4">\n        <div class="text-xs uppercase tracking-wider text-[#6B6B6B] font-semibold">Dec 25 - Dec 31</div>\n    </div>\n    <nav class="flex flex-col">\n        <div class="py-3 px-4 mb-2 border-l-3 border-black bg-[#F7F7F7] cursor-pointer transition-all text-sm font-semibold text-black">\n            <div class="font-medium mb-1">This Week</div>\n            <div class="text-xs text-[#6B6B6B]">Dec 25 - Dec 31, 2025</div>\n        </div>\n    </nav>\n</aside>\n\n<main class="min-w-0">\n    <div class="mb-12">\n        <h2 class="font-serif text-5xl font-bold text-black mb-4 tracking-tight">Weekly Report</h2>\n        <p class="text-xl text-[#292929] mb-4 font-normal">Dec 25, 2025 – Dec 31, 2025</p>\n        <p class="text-lg text-[#6B6B6B] leading-relaxed max-w-[800px]">A curated summary of the most important updates in AI from the last 7 days.</p>\n    </div>\n';
 
   const categories = [
     { key: 'newProducts', title: 'New Products' },
