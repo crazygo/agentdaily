@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const UPDATES_DIR = '/home/runner/work/agentdaily/agentdaily/updates';
-const OUTPUT_FILE = '/home/runner/work/agentdaily/agentdaily/updates/content.html';
-const LATEST_DATE = '2026-07-22';
+const UPDATES_DIR = __dirname;
+const OUTPUT_FILE = path.join(__dirname, 'content.html');
+const LATEST_DATE = '2026-08-13';
 
 // Calculate 7-day range ending on latest date
 function getDateRange(latestDate) {

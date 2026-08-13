@@ -4,7 +4,7 @@ const path = require('path');
 // Configuration
 const UPDATES_DIR = path.join(__dirname);
 const OUTPUT_FILE = path.join(__dirname, 'content.html');
-const LATEST_DATE = '2026-07-22';
+const LATEST_DATE = '2026-08-13';
 
 // Calculate 7-day window
 const latestDate = new Date(LATEST_DATE);
