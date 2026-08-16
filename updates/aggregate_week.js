@@ -1,15 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
-// The 7-day window: June 17-23, 2026
+// The 7-day window: August 10-16, 2026
 const dateFolders = [
-  '2026-06-17',
-  '2026-06-18',
-  '2026-06-19',
-  '2026-06-20',
-  '2026-06-21',
-  '2026-06-22',
-  '2026-06-23'
+  '2026-08-10',
+  '2026-08-11',
+  '2026-08-12',
+  '2026-08-13',
+  '2026-08-14',
+  '2026-08-15',
+  '2026-08-16'
 ];
 
 // Store all items with their dates for deduplication
